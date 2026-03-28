@@ -118,8 +118,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ${{ env.SOLUTION_FILE }}
       
-    - name: Build
-      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release --no-restore
+    - name: Build Android
+      run: dotnet build ${{ env.MAIN_PROJECT }} --configuration Release --no-restore --runtime android-arm64
       
     - name: Publish Android APK
       run: |
@@ -127,10 +127,7 @@ jobs:
           -c Release \
           -r android-arm64 \
           --self-contained true \
-          --platform android \
           -p:AndroidPackageFormat=apk \
-          -p:AndroidUseAapt2=true \
-          -p:CreatePackage=true \
           -p:ApplicationId=com.fenixnix.obsv \
           -p:ApplicationVersion=1.0.0 \
           -p:ApplicationVersionCode=1 \
@@ -139,16 +136,16 @@ jobs:
     - name: Find APK files
       run: |
         echo "Looking for APK files..."
-        find publish/android-apk -name "*.apk" -type f || true
+        find publish -name "*.apk" -type f || true
+        ls -la publish/android-apk/ || true
         
     - name: Upload Android APK
       uses: actions/upload-artifact@v4
       with:
         name: Obsv-Android-APK
         path: |
-          publish/android-apk/**/*.apk
-          publish/android-apk/**/*Signed.apk
-          publish/android-apk/**/*.apk
+          publish/**/*.apk
+          publish/**/*Signed.apk
         if-no-files-found: error
 
   release:
