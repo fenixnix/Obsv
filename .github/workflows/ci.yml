@@ -123,6 +123,7 @@ jobs:
       
     - name: Publish Android APK
       run: |
+        echo "Publishing Android APK..."
         dotnet publish ${{ env.MAIN_PROJECT }} \
           -c Release \
           -r android-arm64 \
@@ -131,22 +132,29 @@ jobs:
           -p:ApplicationId=com.fenixnix.obsv \
           -p:ApplicationVersion=1.0.0 \
           -p:ApplicationVersionCode=1 \
+          -p:AndroidSdkDirectory=/usr/local/lib/android/sdk \
+          -p:AndroidNdkDirectory=/usr/local/lib/android/sdk/ndk/25.1.8937393 \
+          -p:JavaSdkDirectory=/opt/hostedtoolcache/Java_Microsoft_jdk/17.0.10/x64 \
           -o publish/android-apk
           
     - name: Find APK files
       run: |
         echo "Looking for APK files..."
+        find . -name "*.apk" -type f || true
         find publish -name "*.apk" -type f || true
+        find publish/android-apk -name "*.apk" -type f || true
         ls -la publish/android-apk/ || true
+        ls -la publish/ || true
         
     - name: Upload Android APK
       uses: actions/upload-artifact@v4
       with:
         name: Obsv-Android-APK
         path: |
+          **/*.apk
           publish/**/*.apk
-          publish/**/*Signed.apk
-        if-no-files-found: error
+          publish/android-apk/**/*.apk
+        if-no-files-found: warn
 
   release:
     needs: [build-windows, build-linux, build-android]

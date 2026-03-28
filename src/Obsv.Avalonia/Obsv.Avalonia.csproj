@@ -11,6 +11,9 @@
 
   <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">
     <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidSdkDirectory Condition="'$(AndroidSdkDirectory)' == ''">$(USERPROFILE)\AppData\Local\Android\Sdk</AndroidSdkDirectory>
+    <AndroidNdkDirectory Condition="'$(AndroidNdkDirectory)' == ''">$(AndroidSdkDirectory)\ndk\25.1.8937393</AndroidNdkDirectory>
+    <JavaSdkDirectory Condition="'$(JavaSdkDirectory)' == ''">$(ProgramFiles)\Java\jdk-17</JavaSdkDirectory>
   </PropertyGroup>
 
   <ItemGroup>
