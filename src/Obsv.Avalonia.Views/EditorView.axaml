@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:viewModels="clr-namespace:Obsv.Avalonia.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Obsv.Avalonia.Views.EditorView"
+             d:DesignWidth="800" d:DesignHeight="400">
+    <UserControl.DataContext>
+        <viewModels:EditorViewModel/>
+    </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <!-- Syntax highlighting definitions -->
+        <avalonEdit:Highlighting x:Key="JSHighlighting" />
+        <avalonEdit:Highlighting x:Key="TSHighlighting" />
+        <avalonEdit:Highlighting x:Key="PythonHighlighting" />
+        <avalonEdit:Highlighting x:Key="RustHighlighting" />
+        <avalonEdit:Highlighting x:Key="JavaHighlighting" />
+        <avalonEdit:Highlighting x:Key="CppHighlighting" />
+        <avalonEdit:Highlighting x:Key="HtmlHighlighting" />
+        <avalonEdit:Highlighting x:Key="CssHighlighting" />
+        <avalonEdit:Highlighting x:Key="JsonHighlighting" />
+        <avalonEdit:Highlighting x:Key="SqlHighlighting" />
+        <avalonEdit:Highlighting x:Key="XmlHighlighting" />
+        <avalonEdit:Highlighting x:Key="MarkdownHighlighting" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Toolbar -->
+            <RowDefinition Height="*"/>    <!-- Content -->
+        </Grid.RowDefinitions>
+        
+        <!-- Toolbar -->
+        <Border Grid.Row="0" Background="{DynamicResource ThemeBackgroundSecondary}" BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="0,0,0,1" Padding="4">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="{Binding FileName}" Foreground="{DynamicResource ThemeTextSecondary}" FontWeight="Bold" VerticalAlignment="Center"/>
+                <ToggleButton Content="Wrap" IsChecked="{Binding WordWrap}" Command="{Binding ToggleWordWrapCommand}" 
+                              Background="{DynamicResource ThemeBackgroundSecondary}" Foreground="{DynamicResource ThemeTextSecondary}"
+                              BorderBrush="{DynamicResource ThemeBorder}" Margin="4,0"/>
+                <ToggleButton Content="Img" IsChecked="{Binding IsImage}" IsEnabled="False" 
+                              Background="{DynamicResource ThemeBackgroundSecondary}" Foreground="{DynamicResource ThemeTextSecondary}"
+                              BorderBrush="{DynamicResource ThemeBorder}" Margin="4,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Content area -->
+        <Grid Grid.Row="1">
+            <!-- Image preview -->
+            <Image Source="{Binding ImageData}" 
+                   Stretch="Uniform" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   IsVisible="{Binding IsImage}">
+                <Image.Styles>
+                    <Style Selector="Image">
+                        <Setter Property="Opacity" Value="0.9"/>
+                    </Style>
+                </Image.Styles>
+            </Image>
+            
+            <!-- Text editor -->
+            <avalonEdit:TextEditor Name="textEditor"
+                                   FontFamily="Consolas"
+                                   FontSize="12"
+                                   ShowLineNumbers="True"
+                                   IsReadOnly="True"
+                                   SyntaxHighlighting="{StaticResource JsonHighlighting}"
+                                   IsVisible="{Binding !IsImage}"
+                                   WordWrap="{Binding WordWrap}">
+                <avalonEdit:TextEditor.Styles>
+                    <Style Selector="TextEditor">
+                        <Setter Property="Background" Value="{DynamicResource ThemeEditorBackground}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource ThemeEditorForeground}"/>
+                    </Style>
+                </avalonEdit:TextEditor.Styles>
+            </avalonEdit:TextEditor>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Obsv.Avalonia.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Obsv.Avalonia.Views.MenuBarView"
+             d:DesignWidth="800" d:DesignHeight="30">
+    <UserControl.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </UserControl.DataContext>
+    
+    <Menu>
+        <MenuItem Header="_File">
+            <MenuItem Header="_Open Folder..." Command="{Binding OpenFolderCommand}" InputGesture="Ctrl+O"/>
+            <Separator/>
+            <MenuItem Header="E_xit" Command="{Binding Application.ExitCommand}"/>
+        </MenuItem>
+        <MenuItem Header="_View">
+            <MenuItem Header="_Sidebar" IsCheckable="True"/>
+            <MenuItem Header="_Preview" IsCheckable="True"/>
+            <Separator/>
+            <MenuItem Header="Zoom _In" InputGesture="Ctrl+Plus"/>
+            <MenuItem Header="Zoom _Out" InputGesture="Ctrl+Minus"/>
+            <MenuItem Header="_Reset Zoom" InputGesture="Ctrl+0"/>
+        </MenuItem>
+        <MenuItem Header="_Theme">
+            <MenuItem Header="Green Essence (Default)" Command="{Binding ChangeThemeCommand}" CommandParameter="Green Essence"/>
+            <MenuItem Header="Retro Console" Command="{Binding ChangeThemeCommand}" CommandParameter="Retro Console"/>
+            <MenuItem Header="Cyberpunk" Command="{Binding ChangeThemeCommand}" CommandParameter="Cyberpunk"/>
+            <MenuItem Header="Twilight" Command="{Binding ChangeThemeCommand}" CommandParameter="Twilight"/>
+            <MenuItem Header="Paper Ink" Command="{Binding ChangeThemeCommand}" CommandParameter="Paper Ink"/>
+            <Separator/>
+            <MenuItem Header="Custom Theme..."/>
+        </MenuItem>
+        <MenuItem Header="_Help">
+            <MenuItem Header="About Obsv.Avalonia"/>
+            <MenuItem Header="Keyboard Shortcuts"/>
+        </MenuItem>
+    </Menu>
+</UserControl>

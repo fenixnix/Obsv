@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<SyntaxDefinition name="Light (VS Code Style)" extensions=".cs,.js,.ts,.py,.java,.cpp,.c,.h,.go,.rs,.rb,.php,.swift,.html,.css,.json,.xml,.yaml,.sql,.sh,.lua" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+
+  <!-- Light Theme Colors (VS Code Light+ inspired) -->
+  <Color name="Comment" foreground="#008000" />
+  <Color name="String" foreground="#A31515" />
+  <Color name="Keyword" foreground="#0000FF" fontWeight="bold" />
+  <Color name="Number" foreground="#098658" />
+  <Color name="Type" foreground="#267F99" />
+  <Color name="Method" foreground="#795E26" />
+  <Color name="Variable" foreground="#001080" />
+  <Color name="Property" foreground="#001080" />
+  <Color name="Class" foreground="#267F99" />
+  <Color name="Interface" foreground="#267F99" />
+  <Color name="Namespace" foreground="#267F99" />
+  <Color name="Enum" foreground="#267F99" />
+  <Color name="Constant" foreground="#0000FF" fontWeight="bold" />
+  <Color name="Operator" foreground="#000000" />
+  <Color name="Punctuation" foreground="#000000" />
+  <Color name="Tag" foreground="#800000" />
+  <Color name="Attribute" foreground="#FF0000" />
+  <Color name="Value" foreground="#A31515" />
+  <Color name="XMLTag" foreground="#800000" />
+  <Color name="XMLAttribute" foreground="#FF0000" />
+  <Color name="XMLString" foreground="#A31515" />
+  <!-- URL/Link color - Green -->
+  <Color name="Url" foreground="#006600" />
+
+  <RuleSet>
+    <!-- Single line comments (// style) -->
+    <Span color="Comment">
+      <Begin>//</Begin>
+    </Span>
+
+    <!-- Multi-line comments -->
+    <Span color="Comment" multiline="true">
+      <Begin>/\*</Begin>
+      <End>\*/</End>
+    </Span>
+
+    <!-- Strings -->
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+      <RuleSet>
+        <Span begin="\\\\" end="." />
+      </RuleSet>
+    </Span>
+    <Span color="String">
+      <Begin>'</Begin>
+      <End>'</End>
+    </Span>
+    <Span color="String" multiline="true">
+      <Begin>"""</Begin>
+      <End>"""</End>
+    </Span>
+    <Span color="String" multiline="true">
+      <Begin>'''</Begin>
+      <End>'''</End>
+    </Span>
+
+    <!-- Numbers -->
+    <Rule color="Number">
+      \b0[xX][0-9a-fA-F]+\b|\b\d+(\.\d+)?([eE][+-]?\d+)?[fFdDlL]?\b
+    </Rule>
+
+    <!-- Keywords -->
+    <Keywords color="Keyword">
+      <Word>if</Word><Word>else</Word><Word>elif</Word><Word>else if</Word>
+      <Word>switch</Word><Word>case</Word><Word>default</Word>
+      <Word>for</Word><Word>while</Word><Word>do</Word><Word>foreach</Word>
+      <Word>break</Word><Word>continue</Word><Word>return</Word><Word>goto</Word>
+      <Word>try</Word><Word>catch</Word><Word>finally</Word><Word>throw</Word>
+      <Word>new</Word><Word>delete</Word><Word>typeof</Word><Word>sizeof</Word>
+      <Word>const</Word><Word>static</Word><Word>readonly</Word><Word>extern</Word>
+      <Word>public</Word><Word>private</Word><Word>protected</Word><Word>internal</Word>
+      <Word>class</Word><Word>interface</Word><Word>struct</Word><Word>enum</Word><Word>union</Word>
+      <Word>namespace</Word><Word>using</Word><Word>import</Word><Word>from</Word>
+      <Word>function</Word><Word>func</Word><Word>def</Word><Word>fn</Word>
+      <Word>var</Word><Word>let</Word><Word>const</Word><Word>mut</Word>
+      <Word>async</Word><Word>await</Word><Word>yield</Word>
+      <Word>true</Word><Word>false</Word><Word>null</Word><Word>nil</Word><Word>None</Word>
+      <Word>this</Word><Word>self</Word><Word>super</Word>
+      <Word>in</Word><Word>out</Word><Word>ref</Word><Word>params</Word>
+      <Word>abstract</Word><Word>sealed</Word><Word>override</Word><Word>virtual</Word><Word>abstract</Word>
+      <Word>get</Word><Word>set</Word><Word>add</Word><Word>remove</Word>
+      <Word>where</Word><Word>select</Word><Word>from</Word><Word>group</Word><Word>into</Word>
+      <Word>orderby</Word><Word>ascending</Word><Word>descending</Word><Word>join</Word><Word>on</Word><Word>equals</Word>
+      <Word>as</Word><Word>is</Word><Word>instanceof</Word>
+      <Word>package</Word><Word>module</Word><Word>export</Word>
+      <Word>interface</Word><Word>extends</Word><Word>implements</Word>
+      <Word>try</Word><Word>except</Word><Word>finally</Word>
+      <Word>with</Word><Word>lambda</Word><Word>pass</Word>
+    </Keywords>
+
+    <!-- Types -->
+    <Keywords color="Type">
+      <Word>int</Word><Word>long</Word><Word>short</Word><Word>byte</Word>
+      <Word>float</Word><Word>double</Word><Word>decimal</Word>
+      <Word>bool</Word><Word>boolean</Word>
+      <Word>char</Word><Word>string</Word><Word>str</Word>
+      <Word>void</Word><Word>object</Word><Word>any</Word>
+      <Word>uint</Word><Word>ulong</Word><Word>ushort</Word><Word>sbyte</Word>
+      <Word>dynamic</Word><Word>var</Word>
+    </Keywords>
+
+    <!-- Annotations/Decorators -->
+    <Span color="Attribute">
+      <Begin>@\w+</Begin>
+    </Span>
+
+    <!-- HTML/XML Tags -->
+    <Span color="Tag">
+      <Begin>&lt;</Begin>
+      <End>&gt;</End>
+    </Span>
+
+    <!-- Operators -->
+    <Rule color="Operator">
+      [\+\-\*/%=&amp;|^!~]+|&gt;=|&lt;=|&gt;|&lt;|===
+    </Rule>
+
+    <!-- Punctuation -->
+    <Rule color="Punctuation">
+      [?,.;:\[\]{}()]+|-&gt;|&lt;-|=&gt;
+    </Rule>
+
+    <!-- URLs/Links -->
+    <Rule color="Url">
+      https?://[^\s]+
+    </Rule>
+  </RuleSet>
+</SyntaxDefinition>

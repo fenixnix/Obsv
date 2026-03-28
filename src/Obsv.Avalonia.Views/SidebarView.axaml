@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Obsv.Avalonia.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Obsv.Avalonia.Views.SidebarView"
+             d:DesignWidth="240" d:DesignHeight="400">
+    <UserControl.DataContext>
+        <viewModels:FileTreeViewModel/>
+    </UserControl.DataContext>
+    
+    <DockPanel>
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Background="{DynamicResource ThemeBackgroundSecondary}" BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="0,0,0,1" Padding="8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="📂" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="Open" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource ThemeAccent}"/>
+                <TextBlock Text="Folder" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource ThemeTextPrimary}"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Path display -->
+        <Border DockPanel.Dock="Top" Background="{DynamicResource ThemeBackgroundSecondary}" BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="0,0,0,1" Padding="8">
+            <TextBlock Text="{Binding CurrentPath}" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource ThemeTextSecondary}" FontSize="12" TextWrapping="NoWrap"/>
+        </Border>
+        
+        <!-- File tree -->
+        <ScrollViewer DockPanel.Dock="Top">
+            <ItemsControl ItemsSource="{Binding FileEntries}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="viewModels:FileEntry">
+                        <DockPanel>
+                            <!-- Toggle button for directories -->
+                            <Button DockPanel.Dock="Left" Width="20" Height="20" Margin="2,0"
+                                    Command="{Binding DataContext.NavigateUpCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    IsVisible="{Binding IsDirectory}"
+                                    Background="Transparent" BorderBrush="Transparent">
+                                <Path Data="{Binding IsExpanded, Converter={StaticResource BooleanToPathConverter}}"
+                                      Fill="{DynamicResource ThemeTextSecondary}" Width="10" Height="10"/>
+                            </Button>
+                            
+                            <!-- File icon and name -->
+                            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name, Converter={StaticResource FileNameToIconConverter}}"
+                                           FontSize="14" Width="20"/>
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{DynamicResource ThemeTextSecondary}"
+                                           FontWeight="{Binding IsDirectory, Converter={StaticResource BooleanToFontWeightConverter}}"
+                                           TextTrimming="CharacterEllipsis"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

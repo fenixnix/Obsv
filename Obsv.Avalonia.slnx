@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Obsv.Avalonia.Models/Obsv.Avalonia.Models.csproj" />
+    <Project Path="src/Obsv.Avalonia.Services/Obsv.Avalonia.Services.csproj" />
+    <Project Path="src/Obsv.Avalonia.ViewModels/Obsv.Avalonia.ViewModels.csproj" />
+    <Project Path="src/Obsv.Avalonia/Obsv.Avalonia.csproj" />
+  </Folder>
+</Solution>

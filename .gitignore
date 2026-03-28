@@ -1,0 +1,128 @@
+# .NET/.NET Core
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+*.xml
+*.dll.config
+*.exe.config
+
+# Visual Studio
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+[Rr]elease/
+[Dd]ebug/
+
+# Rider
+.idea/
+*.iml
+*.sln.iml
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Unit Test results
+*.coverage
+*.coveragexml
+coveragereport/
+TestResults/
+
+# NCrunch
+*.ncrunch
+*_ReSharper.*
+*.resharper
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Resharper
+_ReSharper.*
+*.resharper
+*.sln.docstates
+
+# MSTest
+TestResults/
+
+# ANTS Performance Profiler
+release/
+
+# ANTS Memory Profiler
+release/
+
+# If using "stylecop"
+# stylecopreport.xml
+
+# If using "code contracts"
+*.ccproj
+*.cccontract
+
+# If using "phantomjs"
+packages/phantomjs*/content/phantomjs*/
+
+# If using "selenium"
+packages/selenium*/content/selenium*/
+
+# If using "bower"
+bower_components/
+
+# If using "npm"
+node_modules/
+npm-debug.log
+
+# If using "yarn"
+yarn-error.log
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Recycle Bin
+$RECYCLE.BIN/

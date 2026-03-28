@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Obsv.Avalonia.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Obsv.Avalonia.Views.StatusBarView"
+             d:DesignWidth="800" d:DesignHeight="24">
+    <UserControl.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </UserControl.DataContext>
+    
+    <Border Background="{DynamicResource ThemeBackgroundSecondary}" 
+            BorderBrush="{DynamicResource ThemeBorder}" 
+            BorderThickness="0,1,0,0"
+            Padding="8,0">
+        <DockPanel>
+            <!-- Status message -->
+            <TextBlock Text="{Binding StatusMessage}" 
+                       Foreground="{DynamicResource ThemeTextSecondary}" 
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Left"/>
+            
+            <!-- Spacer -->
+            <TextBlock Text="" Width="*" DockPanel.Dock="Left"/>
+            
+            <!-- Position info (line:column) -->
+            <TextBlock Text="Ln 1, Col 1" 
+                       Foreground="{DynamicResource ThemeTextSecondary}" 
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Right"
+                       Margin="0,0,8,0"/>
+            
+            <!-- Encoding info -->
+            <TextBlock Text="UTF-8" 
+                       Foreground="{DynamicResource ThemeTextSecondary}" 
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Right"
+                       Margin="0,0,8,0"/>
+        </DockPanel>
+    </Border>
+</UserControl>
