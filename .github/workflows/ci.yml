@@ -127,9 +127,13 @@ jobs:
           -c Release \
           -r android-arm64 \
           --self-contained true \
+          --platform android \
           -p:AndroidPackageFormat=apk \
           -p:AndroidUseAapt2=true \
           -p:CreatePackage=true \
+          -p:ApplicationId=com.fenixnix.obsv \
+          -p:ApplicationVersion=1.0.0 \
+          -p:ApplicationVersionCode=1 \
           -o publish/android-apk
           
     - name: Find APK files

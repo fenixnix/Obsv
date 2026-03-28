@@ -5,11 +5,10 @@
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetPlatform)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">21.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetPlatform)' == 'android'">
-    <RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">
     <AndroidPackageFormat>apk</AndroidPackageFormat>
   </PropertyGroup>
 
@@ -27,7 +26,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetPlatform)' == 'android'">
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">
     <PackageReference Include="Avalonia.Android" Version="12.0.0-rc1" />
   </ItemGroup>
 
