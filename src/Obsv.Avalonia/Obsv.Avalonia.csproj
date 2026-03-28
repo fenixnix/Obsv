@@ -24,10 +24,7 @@
     </PackageReference>
     <PackageReference Include="Avalonia.AvaloniaEdit" Version="12.0.0-rc1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">
-    <PackageReference Include="Avalonia.Android" Version="12.0.0-rc1" />
+    <PackageReference Include="Avalonia.Android" Version="12.0.0-rc1" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'" />
   </ItemGroup>
 
   <ItemGroup>
