@@ -1,10 +1,10 @@
-# Obsv.Avalonia
+# Obsv
 
 一个轻量级的文本阅读器，基于 Avalonia UI 构建的跨平台桌面应用程序。
 
 ## 项目简介
 
-Obsv.Avalonia 是一个使用 .NET 10 和 Avalonia UI 12 构建的轻量级文本阅读器，支持跨平台运行（Windows、Linux、macOS）。专注于提供简洁、高效的文本阅读和编辑体验。
+Obsv 是一个使用 .NET 10 和 Avalonia UI 12 构建的轻量级文本阅读器，支持跨平台运行（Windows、Linux、macOS）。专注于提供简洁、高效的文本阅读和编辑体验。
 
 ## 主要功能
 
