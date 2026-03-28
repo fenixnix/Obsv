@@ -6,6 +6,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <RuntimeIdentifiers>win-x64;linux-x64;android-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(RuntimeIdentifier)')) == 'android'">
