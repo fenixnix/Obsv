@@ -1,6 +1,6 @@
 # Obsv
 
-一个轻量级的文本阅读器，基于 Avalonia UI 构建的跨平台桌面应用程序。
+一个轻量级的文本代码阅读器。
 
 ## 项目简介
 
@@ -103,3 +103,4 @@ dotnet publish -c Release -r osx-x64
 
 - 提交 Issue
 - 发送邮件至项目维护者
+
