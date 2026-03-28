@@ -1,13 +1,14 @@
 # Obsv.Avalonia
 
-一个基于 Avalonia UI 的跨平台桌面应用程序。
+一个轻量级的文本阅读器，基于 Avalonia UI 构建的跨平台桌面应用程序。
 
 ## 项目简介
 
-Obsv.Avalonia 是一个使用 .NET 10 和 Avalonia UI 12 构建的现代化桌面应用程序，支持跨平台运行（Windows、Linux、macOS）。
+Obsv.Avalonia 是一个使用 .NET 10 和 Avalonia UI 12 构建的轻量级文本阅读器，支持跨平台运行（Windows、Linux、macOS）。专注于提供简洁、高效的文本阅读和编辑体验。
 
 ## 主要功能
 
+- 📖 轻量级文本阅读和编辑
 - 🎨 基于 Fluent 设计主题的现代化 UI
 - 📝 集成 AvaloniaEdit 文本编辑器，支持语法高亮
 - 🌓 支持亮色/暗色主题切换
