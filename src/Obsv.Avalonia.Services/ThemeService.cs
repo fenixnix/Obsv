@@ -78,8 +78,7 @@ public class ThemeService : IThemeService
             var json = await File.ReadAllTextAsync(filePath);
             var options = new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true,
-                ReadNumberHandling = JsonNumberHandling.AllowReadingFromString
+                PropertyNameCaseInsensitive = true
             };
             var theme = JsonSerializer.Deserialize<AppTheme>(json, options);
             if (theme != null)
