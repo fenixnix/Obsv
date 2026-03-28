@@ -157,7 +157,7 @@ jobs:
         if-no-files-found: warn
 
   release:
-    needs: [build-windows, build-linux, build-android]
+    needs: [build-windows, build-linux]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     
@@ -179,6 +179,7 @@ jobs:
       with:
         name: Obsv-Android-APK
         path: artifacts/android
+        if-no-files-found: warn
         
     - name: Create Windows zip
       run: |
@@ -190,12 +191,13 @@ jobs:
         cd artifacts/linux-x64
         tar -czvf ../../Obsv-Linux-x64.tar.gz .
         
-    - name: Create Release APK
+    - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
           Obsv-Windows-x64.zip
           Obsv-Linux-x64.tar.gz
           artifacts/android/**/*.apk
+        fail_on_unmatched_files: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
