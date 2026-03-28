@@ -65,7 +65,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libgtk-3-0 libx11-xcb1 libxcb-dri3-0 libxcb-present0 libxcb-randr0 libxcb-xfixes0 libxcb-shape0 libxcb-shm0 libxext6 libxrender1 libxtst6 libxi6 libasound2
+        sudo apt-get install -y libgtk-3-0 libx11-xcb1 libxcb-dri3-0 libxcb-present0 libxcb-randr0 libxcb-xfixes0 libxcb-shape0 libxcb-shm0 libxext6 libxrender1 libxtst6 libxi6 libasound2t64
         
     - name: Restore dependencies
       run: dotnet restore ${{ env.SOLUTION_FILE }}
@@ -128,14 +128,23 @@ jobs:
           -r android-arm64 \
           --self-contained true \
           -p:AndroidPackageFormat=apk \
-          -p:PublishTrimmed=true \
+          -p:AndroidUseAapt2=true \
+          -p:CreatePackage=true \
           -o publish/android-apk
           
+    - name: Find APK files
+      run: |
+        echo "Looking for APK files..."
+        find publish/android-apk -name "*.apk" -type f || true
+        
     - name: Upload Android APK
       uses: actions/upload-artifact@v4
       with:
         name: Obsv-Android-APK
-        path: publish/android-apk/**/*.apk
+        path: |
+          publish/android-apk/**/*.apk
+          publish/android-apk/**/*Signed.apk
+          publish/android-apk/**/*.apk
         if-no-files-found: error
 
   release:

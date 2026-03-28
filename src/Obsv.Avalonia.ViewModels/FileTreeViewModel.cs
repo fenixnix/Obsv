@@ -43,7 +43,7 @@ public partial class FileTreeViewModel : ObservableObject
             // Update main view model's root path
             _mainViewModel.RootPath = path;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             // TODO: Handle error appropriately
             FileEntries = Enumerable.Empty<FileEntry>();

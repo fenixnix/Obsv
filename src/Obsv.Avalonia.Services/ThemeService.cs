@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Obsv.Avalonia.Models;
 
 namespace Obsv.Avalonia.Services;
@@ -75,7 +76,12 @@ public class ThemeService : IThemeService
         try
         {
             var json = await File.ReadAllTextAsync(filePath);
-            var theme = JsonSerializer.Deserialize<AppTheme>(json);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                ReadNumberHandling = JsonNumberHandling.AllowReadingFromString
+            };
+            var theme = JsonSerializer.Deserialize<AppTheme>(json, options);
             if (theme != null)
             {
                 _currentTheme = theme;
@@ -95,7 +101,12 @@ public class ThemeService : IThemeService
     /// <param name="filePath">Path to save the theme configuration</param>
     public async Task SaveThemeToFileAsync(string filePath)
     {
-        var json = JsonSerializer.Serialize(_currentTheme, new JsonSerializerOptions { WriteIndented = true });
+        var options = new JsonSerializerOptions 
+        { 
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+        var json = JsonSerializer.Serialize(_currentTheme, options);
         await File.WriteAllTextAsync(filePath, json);
     }
 
